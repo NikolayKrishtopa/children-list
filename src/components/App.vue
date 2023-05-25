@@ -1,26 +1,42 @@
 <template>
   <comp-header />
-  <main class="content"></main>
+  <form-page />
   <comp-footer />
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { User, Kid } from '../models/models';
 export default defineComponent({
   data() {
     return {
-      name: 'Хуй соси губой тряси',
-      newNoteTitle: '',
+      store: {
+        user: {
+          name: 'Пётр',
+          age: 99,
+        } as User,
+        kids: [
+          { id: 1, name: 'Мария', age: 10 },
+          { id: 2, name: 'Павел', age: 6 },
+          { id: 3, name: 'Семён', age: 4 },
+        ] as Array<Kid>,
+      },
     };
   },
-  methods: {},
-  props: {},
+  methods: {
+    updateStore(data: typeof this.store) {
+      this.store = data;
+    },
+  },
 });
 </script>
 <style lang="scss" scoped>
 @import '../styles/globalVars.scss';
 
 .content {
-  flex-shrink: 1;
-  min-height: 100%;
+  @include flex-column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  max-width: $max-width-content;
 }
 </style>

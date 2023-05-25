@@ -4,8 +4,12 @@ import './styles/reset.scss';
 import Header from '/src/components/Header.vue';
 import Footer from '/src/components/Footer.vue';
 import App from '/src/components/App.vue';
+import Form from '/src/components/Form.vue';
+import FormPage from '/src/pages/FormPage.vue';
 
-const components = [Header, Footer];
+const components = [Header, Footer, Form, FormPage];
+
+console.log(Footer.data().name);
 
 const app = createApp(App);
 

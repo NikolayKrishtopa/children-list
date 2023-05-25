@@ -32,7 +32,7 @@ export default defineComponent({
   width: 100%;
   background-color: $white;
   padding: 22px $side-padding;
-  border-bottom: 1px solid $primary-darkest;
+  border-bottom: 1px solid #11111110;
 }
 .logo {
   justify-self: flex-start;
@@ -50,6 +50,7 @@ export default defineComponent({
 }
 .link {
   @include text-main(14px, 24px, $primary-darkest);
+  text-decoration: none;
   opacity: 48%;
 }
 </style>
