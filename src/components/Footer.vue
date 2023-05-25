@@ -1,15 +1,14 @@
 <template>
-  <comp-header />
-  <main class="content"></main>
-  <comp-footer />
+  <footer class="footer">
+    <p class="text-m">all rights reserved</p>
+  </footer>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
     return {
-      name: 'Хуй соси губой тряси',
-      newNoteTitle: '',
+      name: 'comp-footer',
     };
   },
   methods: {},
@@ -19,8 +18,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import '../styles/globalVars.scss';
 
-.content {
-  flex-shrink: 1;
-  min-height: 100%;
+.footer {
+  @include flex-row;
+  padding: 30px;
+  background-color: $primary-darker;
+}
+.text-m {
+  @include text-main(13px, 1.22, $black);
 }
 </style>

@@ -1,0 +1,68 @@
+@import '../assets/fonts/fonts.scss';
+
+$primary-light: #f2f2f2;
+$primary-darker: #fafafa;
+$primary-darkest: #111111;
+$items-dark: #f1f1f1;
+$white: #fff;
+$black: #000;
+$accent: #01a7fd;
+
+$max-width-page: 1280px;
+$max-width-content: 616px;
+
+$side-padding: 50px;
+
+$breakpoint-tablet: 800px;
+$breakpoint-mobile-big: 600px;
+$breakpoint-mobile-small: 480px;
+
+$font-main: 'Montserrat', Arial, sans-serif;
+
+@mixin text-main($height, $lineHeight, $color) {
+  margin: 0;
+  font-family: $font-main;
+  font-size: $height;
+  font-weight: 400;
+  line-height: $lineHeight;
+  // letter-spacing: 0px;
+  text-align: left;
+  color: $color;
+}
+
+@mixin input {
+  width: 100%;
+  padding: 8px 16px 6px;
+  background-color: 1px solid $items-dark;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+@mixin button($type) {
+  @include text-main(14px, 24px);
+  padding: 10px 20px;
+  border: 2px solid $accent;
+  color: $white;
+  background-color: $accent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@mixin flex-column {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: start;
+  box-sizing: border-box;
+}

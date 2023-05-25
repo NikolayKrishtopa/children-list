@@ -1,4 +1,3 @@
-import miniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
 import { BuildMode } from './types/config';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -22,13 +21,14 @@ export default function buildLoaders(mode: BuildMode): webpack.RuleSetRule[] {
       use: ['vue-style-loader', 'css-loader'],
     },
     {
+      test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+      type: 'asset/resource',
+    },
+    {
       test: /\.s[ac]ss$/i,
       use: [
-        // Creates `style` nodes from JS strings
         mode === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
-        // Translates CSS into CommonJS
         'css-loader',
-        // Compiles Sass to CSS
         'sass-loader',
       ],
     },
