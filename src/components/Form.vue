@@ -7,7 +7,7 @@
         name="name"
         class="input"
         v-model="state.name"
-        @input="$emit('edit', state)"
+        @input="edit"
       />
     </label>
     <label for="age" class="label">
@@ -17,15 +17,17 @@
         name="age"
         class="input"
         v-model="state.age"
-        @input="$emit('edit', state)"
+        @input="edit"
       />
     </label>
-    <button v-if="type === 'kid'" class="button">Удалить</button>
+    <button v-if="type === 'kid'" class="button" @click="remove">
+      Удалить
+    </button>
   </form>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { User, FormType } from '../models/models';
+import { User, Kid } from '../models/models';
 
 export default defineComponent({
   data() {
@@ -34,10 +36,18 @@ export default defineComponent({
       state: {
         name: this.data?.name,
         age: this.data?.age,
-      } as User,
+        id: this.data?.id,
+      } as User | Kid,
     };
   },
-  methods: {},
+  methods: {
+    edit() {
+      this.$emit('edit', this.state);
+    },
+    remove() {
+      this.$emit('delete', this.state);
+    },
+  },
   props: {
     type: { type: String, required: true },
     data: { type: Object },
@@ -67,5 +77,8 @@ export default defineComponent({
 .input {
   @include text-main(14px, 24px, $black);
   outline: none;
+}
+.button {
+  @include button(weak);
 }
 </style>

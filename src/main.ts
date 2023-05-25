@@ -9,8 +9,6 @@ import FormPage from '/src/pages/FormPage.vue';
 
 const components = [Header, Footer, Form, FormPage];
 
-console.log(Footer.data().name);
-
 const app = createApp(App);
 
 components.forEach((c) => {

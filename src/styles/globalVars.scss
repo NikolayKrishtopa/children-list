@@ -22,6 +22,19 @@ $font-main: 'Montserrat', Arial, sans-serif;
 $vertical-gap: 10px;
 $horizontal-gap: 18px;
 
+$transition-duration: 0.5s;
+
+@mixin clickable {
+  cursor: pointer;
+  transition: opacity $transition-duration ease;
+  &:hover {
+    opacity: 50%;
+    @media screen and (hover: none) {
+      opacity: 100%;
+    }
+  }
+}
+
 @mixin text-main($height, $lineHeight, $color) {
   margin: 0;
   font-family: $font-main;
@@ -44,12 +57,20 @@ $horizontal-gap: 18px;
 }
 
 @mixin button($type) {
-  @include text-main(14px, 24px);
+  @include text-main(14px, 24px, $accent);
+  @include clickable;
   padding: 10px 20px;
-  border: 2px solid $accent;
-  color: $white;
-  background-color: $accent;
-  border-radius: 50%;
+  @if $type == weak {
+    color: $accent;
+  }
+  @if $type == bordered {
+    border: 2px solid $accent;
+  }
+  @if $type == strong {
+    color: $white;
+    background-color: $accent;
+  }
+  border-radius: 22px;
   display: flex;
   align-items: center;
   justify-content: center;

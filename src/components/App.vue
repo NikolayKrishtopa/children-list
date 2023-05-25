@@ -1,6 +1,6 @@
 <template>
   <comp-header />
-  <form-page />
+  <form-page :data="store" @update="updateStore" />
   <comp-footer />
 </template>
 <script lang="ts">
@@ -18,6 +18,8 @@ export default defineComponent({
           { id: 1, name: 'Мария', age: 10 },
           { id: 2, name: 'Павел', age: 6 },
           { id: 3, name: 'Семён', age: 4 },
+          { id: 4, name: 'Саша', age: 4 },
+          { id: 5, name: 'Аня', age: 4 },
         ] as Array<Kid>,
       },
     };
@@ -25,6 +27,8 @@ export default defineComponent({
   methods: {
     updateStore(data: typeof this.store) {
       this.store = data;
+      console.log(this.store.user);
+      console.log(this.store.kids);
     },
   },
 });

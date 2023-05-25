@@ -21,8 +21,6 @@ export default defineComponent({
       name: 'comp-header',
     };
   },
-  methods: {},
-  props: {},
 });
 </script>
 <style lang="scss" scoped>
