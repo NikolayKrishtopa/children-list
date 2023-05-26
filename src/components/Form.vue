@@ -20,9 +20,9 @@
         @input="edit"
       />
     </label>
-    <button v-if="type === 'kid'" class="button" @click.prevent="remove">
+    <comp-button :style="'weak'" v-if="type === 'kid'" @click.prevent="remove">
       Удалить
-    </button>
+    </comp-button>
   </form>
 </template>
 <script lang="ts">
@@ -75,8 +75,5 @@ export default defineComponent({
 .input {
   @include text-main(14px, 24px, $black);
   outline: none;
-}
-.button {
-  @include button(weak);
 }
 </style>

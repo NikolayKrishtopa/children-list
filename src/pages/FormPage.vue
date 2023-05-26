@@ -3,14 +3,15 @@
     <comp-section :title="'Персональные данные'">
       <comp-form :type="'user'" :data="state.user" @edit="editUserState" />
     </comp-section>
-    <button
+    <comp-button
       type="button"
+      :style="'bordered'"
       class="add-btn"
       v-if="kidsList.length < 5"
       @click.prevent="addKidToState"
     >
       Добавить ребенка
-    </button>
+    </comp-button>
     <comp-section :title="'Дети (макс. 5)'">
       <div class="kids">
         <comp-form
@@ -23,7 +24,9 @@
         />
       </div>
     </comp-section>
-    <button class="save-btn" @click.prevent="dispatchSave">Сохранить</button>
+    <comp-button :style="'solid'" @click.prevent="dispatchSave"
+      >Сохранить
+    </comp-button>
   </main>
 </template>
 <script lang="ts">
@@ -83,13 +86,9 @@ export default defineComponent({
   @include flex-column;
   gap: $vertical-gap;
 }
-.save-btn {
-  @include button(strong);
-}
 .add-btn {
-  @include button(bordered);
   align-self: flex-end;
-  margin-bottom: -65px;
+  margin-bottom: -65px !important;
 }
 .content {
   @include content(30px);

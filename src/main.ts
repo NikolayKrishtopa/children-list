@@ -9,9 +9,10 @@ import FormPage from '/src/pages/FormPage.vue';
 import router from './router/router';
 import Section from '/src/components/UI/Section.vue';
 import TagItem from '/src/components/UI/TagItem.vue';
+import Button from '/src/components/UI/Button.vue';
 import store from './store';
 
-const components = [Header, Footer, Form, FormPage, Section, TagItem];
+const components = [Header, Footer, Form, FormPage, Section, TagItem, Button];
 
 const app = createApp(App);
 
