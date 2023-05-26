@@ -1,10 +1,10 @@
 <template>
   <comp-section :title="'Персональные данные'">
-    <tag-item :text="`${state.user.name}, ${state.user.age} лет`" />
+    <tag-item :text="`${userData.name}, ${userData.age} лет`" />
   </comp-section>
   <comp-section :title="'Дети (макс. 5)'">
     <tag-item
-      v-for="kid in state.kids"
+      v-for="kid in kidsList"
       :key="kid.id"
       :text="`${kid.name}, ${kid.age} лет`"
     />
@@ -12,51 +12,14 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { User, Kid } from '../models/models';
+import { mapGetters } from 'vuex';
 export default defineComponent({
   data() {
     return {
       name: 'preview-page',
-      state: {
-        user: {
-          name: 'Пётр',
-          age: 99,
-        } as User,
-        kids: [
-          { id: 1, name: 'Мария', age: 10 },
-          { id: 2, name: 'Павел', age: 6 },
-          { id: 3, name: 'Семён', age: 4 },
-          { id: 4, name: 'Саша', age: 4 },
-          { id: 5, name: 'Аня', age: 4 },
-        ] as Array<Kid>,
-      },
     };
   },
-  methods: {
-    updateUserData(data: User) {
-      this.state.user = data;
-    },
-    addKid() {
-      this.state.kids.push({ id: Date.now(), name: '', age: 0 });
-    },
-    removeKid(data: Kid) {
-      this.state.kids = this.state.kids.filter((kid) => kid.id !== data?.id);
-    },
-    editKid(data: Kid) {
-      this.state.kids = this.state.kids.map((k) =>
-        k.id === data.id ? data : k
-      );
-    },
-    sendData() {
-      this.$emit('update', this.state);
-    },
-  },
-  props: {
-    data: {
-      type: Object,
-      required: true,
-    },
-  },
+  computed: mapGetters(['userData', 'kidsList']),
 });
 </script>
 <style lang="scss" scoped>
