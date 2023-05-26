@@ -103,3 +103,13 @@ $transition-duration: 0.5s;
   text-align: left;
   color: $primary-darkest;
 }
+
+@mixin content($gap) {
+  @include flex-column;
+  padding: 30px;
+  align-items: flex-start;
+  gap: $gap;
+  max-width: $max-width-content;
+  min-height: 100%;
+  flex-grow: 1;
+}

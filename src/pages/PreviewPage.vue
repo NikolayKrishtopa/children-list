@@ -1,14 +1,16 @@
 <template>
-  <comp-section :title="'Персональные данные'">
-    <tag-item :text="`${userData.name}, ${userData.age} лет`" />
-  </comp-section>
-  <comp-section :title="'Дети (макс. 5)'">
-    <tag-item
-      v-for="kid in kidsList"
-      :key="kid.id"
-      :text="`${kid.name}, ${kid.age} лет`"
-    />
-  </comp-section>
+  <main class="content">
+    <comp-section :title="'Персональные данные'">
+      <tag-item :text="`${userData.name}, ${userData.age} лет`" />
+    </comp-section>
+    <comp-section :title="'Дети (макс. 5)'">
+      <tag-item
+        v-for="kid in kidsList"
+        :key="kid.id"
+        :text="`${kid.name}, ${kid.age} лет`"
+      />
+    </comp-section>
+  </main>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
@@ -43,5 +45,8 @@ export default defineComponent({
   @include button(bordered);
   align-self: flex-end;
   margin-bottom: -65px;
+}
+.content {
+  @include content(60px);
 }
 </style>

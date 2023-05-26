@@ -1,28 +1,30 @@
 <template>
-  <comp-section :title="'Персональные данные'">
-    <comp-form :type="'user'" :data="state.user" @edit="editUserState" />
-  </comp-section>
-  <button
-    type="button"
-    class="add-btn"
-    v-if="kidsList.length < 5"
-    @click.prevent="addKidToState"
-  >
-    Добавить ребенка
-  </button>
-  <comp-section :title="'Дети (макс. 5)'">
-    <div class="kids">
-      <comp-form
-        v-for="kid in state.kids"
-        :type="'kid'"
-        :key="kid.id"
-        :data="kid"
-        @edit="editKidState"
-        @remove="removeKidFromState"
-      />
-    </div>
-  </comp-section>
-  <button class="save-btn" @click.prevent="dispatchSave">Сохранить</button>
+  <main class="content">
+    <comp-section :title="'Персональные данные'">
+      <comp-form :type="'user'" :data="state.user" @edit="editUserState" />
+    </comp-section>
+    <button
+      type="button"
+      class="add-btn"
+      v-if="kidsList.length < 5"
+      @click.prevent="addKidToState"
+    >
+      Добавить ребенка
+    </button>
+    <comp-section :title="'Дети (макс. 5)'">
+      <div class="kids">
+        <comp-form
+          v-for="kid in state.kids"
+          :type="'kid'"
+          :key="kid.id"
+          :data="kid"
+          @edit="editKidState"
+          @remove="removeKidFromState"
+        />
+      </div>
+    </comp-section>
+    <button class="save-btn" @click.prevent="dispatchSave">Сохранить</button>
+  </main>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
@@ -88,5 +90,8 @@ export default defineComponent({
   @include button(bordered);
   align-self: flex-end;
   margin-bottom: -65px;
+}
+.content {
+  @include content(30px);
 }
 </style>

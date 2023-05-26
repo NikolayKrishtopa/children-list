@@ -1,8 +1,6 @@
 <template>
   <comp-header />
-  <main class="content">
-    <router-view></router-view>
-  </main>
+  <router-view></router-view>
   <comp-footer />
 </template>
 <script lang="ts">
@@ -15,14 +13,4 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 @import '../styles/globalVars.scss';
-
-.content {
-  @include flex-column;
-  padding: 30px;
-  align-items: flex-start;
-  gap: 30px;
-  max-width: $max-width-content;
-  min-height: 100%;
-  flex-grow: 1;
-}
 </style>

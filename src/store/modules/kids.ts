@@ -8,7 +8,7 @@ export default {
   actions: {},
   mutations: {
     updateKids(state: KidsState, payload: Array<Kid>) {
-      state.kids = payload;
+      state.kids = JSON.parse(JSON.stringify(payload));
     },
   },
   state: {
