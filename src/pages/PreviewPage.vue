@@ -1,27 +1,14 @@
 <template>
   <comp-section :title="'Персональные данные'">
-    <comp-form :type="'user'" :data="state.user" @edit="updateUserData" />
+    <tag-item :text="`${state.user.name}, ${state.user.age} лет`" />
   </comp-section>
-  <button
-    type="button"
-    class="add-btn"
-    v-if="state.kids.length < 5"
-    @click="addKid"
-  >
-    Добавить ребенка
-  </button>
   <comp-section :title="'Дети (макс. 5)'">
-    <div class="kids">
-      <comp-form
-        v-for="kid in state.kids"
-        :type="'kid'"
-        :key="kid.id"
-        :data="kid"
-        @delete="removeKid"
-      />
-    </div>
+    <tag-item
+      v-for="kid in state.kids"
+      :key="kid.id"
+      :text="`${kid.name}, ${kid.age} лет`"
+    />
   </comp-section>
-  <button class="save-btn" @click="sendData">Сохранить</button>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
@@ -29,11 +16,7 @@ import { User, Kid } from '../models/models';
 export default defineComponent({
   data() {
     return {
-      name: 'form-page',
-      // state: {
-      //   user: { ...this.data.user } as User,
-      //   kids: this.data.kids as Array<Kid>,
-      // },
+      name: 'preview-page',
       state: {
         user: {
           name: 'Пётр',

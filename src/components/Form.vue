@@ -54,11 +54,9 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../styles/globalVars.scss';
-.title {
-  @include section-title;
-}
+
 .userForm {
   @include flex-column;
   gap: $vertical-gap;

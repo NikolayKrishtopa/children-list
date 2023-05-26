@@ -8,8 +8,8 @@ $white: #fff;
 $black: #000;
 $accent: #01a7fd;
 
-$max-width-page: 1280px;
-$max-width-content: 616px;
+$max-width-page: 1180px;
+$max-width-content: 676px;
 
 $side-padding: 50px;
 
@@ -89,7 +89,7 @@ $transition-duration: 0.5s;
   width: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   box-sizing: border-box;
 }
 

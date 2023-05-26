@@ -1,6 +1,9 @@
 <template>
   <comp-header />
-  <form-page :data="store" @update="updateStore" />
+  <main class="content">
+    <router-view></router-view>
+    <!-- <form-page :data="store" @update="updateStore" /> -->
+  </main>
   <comp-footer />
 </template>
 <script lang="ts">
@@ -27,8 +30,6 @@ export default defineComponent({
   methods: {
     updateStore(data: typeof this.store) {
       this.store = data;
-      console.log(this.store.user);
-      console.log(this.store.kids);
     },
   },
 });
@@ -38,9 +39,11 @@ export default defineComponent({
 
 .content {
   @include flex-column;
+  padding: 30px;
   align-items: flex-start;
-  gap: 20px;
-  width: 100%;
+  gap: 30px;
   max-width: $max-width-content;
+  min-height: 100%;
+  flex-grow: 1;
 }
 </style>

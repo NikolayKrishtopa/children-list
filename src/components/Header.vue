@@ -1,16 +1,16 @@
 <template>
   <header class="header">
-    <container class="container">
+    <div class="container">
       <img
         src="../assets/img/logo.png"
         alt="Логотип компании Alef"
         class="logo"
       />
       <div class="nav">
-        <a href="#" class="link">Форма</a>
-        <a href="#" class="link">Превью</a>
+        <router-link to="/" class="link">Форма</router-link>
+        <router-link to="/preview" class="link">Превью</router-link>
       </div>
-    </container>
+    </div>
   </header>
 </template>
 <script lang="ts">
