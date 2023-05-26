@@ -5,8 +5,8 @@
   <button
     type="button"
     class="add-btn"
-    v-if="state.kids.length < 5"
-    @click="addKid"
+    v-if="kidsList.length < 5"
+    @click="console.log('Add')"
   >
     Добавить ребенка
   </button>
@@ -20,16 +20,19 @@
       />
     </div>
   </comp-section>
-  <button class="save-btn">Сохранить</button>
+  <button class="save-btn" @click="console.log('Save')">Сохранить</button>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { User, Kid } from '../models/models';
 import { mapGetters } from 'vuex';
 export default defineComponent({
   data() {
     return {
       name: 'form-page',
+      state: {
+        user: this.userData,
+        kids: this.kidsList,
+      },
     };
   },
   computed: mapGetters(['userData', 'kidsList']),
@@ -57,9 +60,6 @@ export default defineComponent({
       type: Object,
       required: true,
     },
-  },
-  mounted() {
-    console.log(this.$store.getters.getUserData);
   },
 });
 </script>
