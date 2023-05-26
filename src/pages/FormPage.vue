@@ -6,12 +6,12 @@
     <comp-button
       type="button"
       :style="'bordered'"
+      :text="'Добавить ребенка'"
       class="add-btn"
       v-if="kidsList.length < 5"
       @click.prevent="addKidToState"
-    >
-      Добавить ребенка
-    </comp-button>
+      ><img src="../assets/img/plus_icon.svg" alt=""
+    /></comp-button>
     <comp-section :title="'Дети (макс. 5)'">
       <div class="kids">
         <comp-form
@@ -24,9 +24,11 @@
         />
       </div>
     </comp-section>
-    <comp-button :style="'solid'" @click.prevent="dispatchSave"
-      >Сохранить
-    </comp-button>
+    <comp-button
+      :style="'solid'"
+      :text="'Сохранить'"
+      @click.prevent="dispatchSave"
+    />
   </main>
 </template>
 <script lang="ts">
