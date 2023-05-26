@@ -8,7 +8,7 @@
       :style="'bordered'"
       :text="'Добавить ребенка'"
       class="add-btn"
-      v-if="kidsList.length < 5"
+      v-if="state.kids.length < 5"
       @click.prevent="addKidToState"
       ><img src="../assets/img/plus_icon.svg" alt=""
     /></comp-button>
