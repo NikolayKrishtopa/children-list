@@ -6,7 +6,9 @@
   "scripts": {
     "buildDev": "webpack --env mode=development",
     "buildProd": "webpack --env mode=production",
-    "dev": "webpack serve --env port=8080"
+    "dev": "webpack serve --env port=8080",
+    "predeploy": "npm run buildProd",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
     "@types/webpack": "^5.28.1",
     "@types/webpack-dev-server": "^4.7.2",
     "css-loader": "^6.7.4",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.5",
     "sass": "^1.62.1",

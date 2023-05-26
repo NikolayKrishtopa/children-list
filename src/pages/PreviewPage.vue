@@ -1,7 +1,7 @@
 <template>
   <main class="content">
     <comp-section :title="'Персональные данные'">
-      <tag-item :text="`${userData.name}, ${userData.age} лет`" />
+      <tag-item :filled="false" :text="`${userData.name}, ${userData.age} лет`" />
     </comp-section>
     <comp-section :title="'Дети (макс. 5)'">
       <tag-item
