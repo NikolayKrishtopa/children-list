@@ -2,13 +2,11 @@
   <comp-header />
   <main class="content">
     <router-view></router-view>
-    <!-- <form-page :data="store" @update="updateStore" /> -->
   </main>
   <comp-footer />
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { User, Kid } from '../models/models';
 export default defineComponent({
   data() {
     return {};

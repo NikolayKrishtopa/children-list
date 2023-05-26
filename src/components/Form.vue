@@ -20,7 +20,7 @@
         @input="edit"
       />
     </label>
-    <button v-if="type === 'kid'" class="button" @click="remove">
+    <button v-if="type === 'kid'" class="button" @click.prevent="remove">
       Удалить
     </button>
   </form>
@@ -45,7 +45,7 @@ export default defineComponent({
       this.$emit('edit', this.state);
     },
     remove() {
-      this.$emit('delete', this.state);
+      this.$emit('remove', this.state);
     },
   },
   props: {

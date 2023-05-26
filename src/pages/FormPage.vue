@@ -1,12 +1,12 @@
 <template>
   <comp-section :title="'Персональные данные'">
-    <comp-form :type="'user'" :data="userData" />
+    <comp-form :type="'user'" :data="state.user" @edit="editUserState" />
   </comp-section>
   <button
     type="button"
     class="add-btn"
     v-if="kidsList.length < 5"
-    @click="console.log('Add')"
+    @click.prevent="addKidToState"
   >
     Добавить ребенка
   </button>
@@ -17,49 +17,53 @@
         :type="'kid'"
         :key="kid.id"
         :data="kid"
+        @edit="editKidState"
+        @remove="removeKidFromState"
       />
     </div>
   </comp-section>
-  <button class="save-btn" @click="console.log('Save')">Сохранить</button>
+  <button class="save-btn" @click.prevent="dispatchSave">Сохранить</button>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
+import { Kid, User } from '../models/models';
 export default defineComponent({
+  computed: {
+    ...mapGetters(['userData', 'kidsList']),
+  },
   data() {
     return {
       name: 'form-page',
       state: {
-        user: this.userData,
-        kids: this.kidsList,
+        user: {} as User,
+        kids: [] as Array<Kid>,
       },
     };
   },
-  computed: mapGetters(['userData', 'kidsList']),
-  // methods: {
-  //   updateUserData(data: User) {
-  //     this.state.user = data;
-  //   },
-  //   addKid() {
-  //     this.state.kids.push({ id: Date.now(), name: '', age: 0 });
-  //   },
-  //   removeKid(data: Kid) {
-  //     this.state.kids = this.state.kids.filter((kid) => kid.id !== data?.id);
-  //   },
-  //   editKid(data: Kid) {
-  //     this.state.kids = this.state.kids.map((k) =>
-  //       k.id === data.id ? data : k
-  //     );
-  //   },
-  //   sendData() {
-  //     this.$emit('update', this.state);
-  //   },
-  // },
-  props: {
-    data: {
-      type: Object,
-      required: true,
+  methods: {
+    editUserState(data: User) {
+      this.state.user = data;
     },
+    addKidToState() {
+      this.state.kids.push({ id: Date.now(), name: '', age: 0 });
+    },
+    removeKidFromState(data: Kid) {
+      this.state.kids = this.state.kids.filter((kid) => kid.id !== data?.id);
+    },
+    editKidState(data: Kid) {
+      this.state.kids = this.state.kids.map((k) =>
+        k.id === data.id ? data : k
+      );
+    },
+    dispatchSave() {
+      this.$store.commit('updateUser', this.state.user);
+      this.$store.commit('updateKids', this.state.kids);
+    },
+  },
+  beforeMount() {
+    this.state.user = JSON.parse(JSON.stringify(this.userData));
+    this.state.kids = JSON.parse(JSON.stringify(this.kidsList));
   },
 });
 </script>
