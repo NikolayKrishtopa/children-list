@@ -64,6 +64,9 @@ export default defineComponent({
 .kidForm {
   @include flex-row;
   gap: $horizontal-gap;
+  @media screen and (max-width: $breakpoint-mobile-big) {
+    flex-direction: column;
+  }
 }
 .label {
   @include inputWrapper;

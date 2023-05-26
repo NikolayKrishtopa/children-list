@@ -91,6 +91,14 @@ export default defineComponent({
 .add-btn {
   align-self: flex-end;
   margin-bottom: -65px !important;
+  @media screen and (max-width: $breakpoint-mobile-big) {
+    padding: 10px !important;
+    margin-bottom: -40px !important;
+  }
+  @media screen and (max-width: $breakpoint-mobile-small) {
+    transform: scale(0.7) translateX(21%);
+    margin-bottom: -30px !important;
+  }
 }
 .content {
   @include content(30px);

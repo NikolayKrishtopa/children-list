@@ -31,6 +31,9 @@ export default defineComponent({
   background-color: $white;
   padding: 22px $side-padding;
   border-bottom: 1px solid #11111110;
+  @media screen and (max-width: $breakpoint-mobile-big) {
+    padding: 20px;
+  }
 }
 .logo {
   justify-self: flex-start;
@@ -40,11 +43,17 @@ export default defineComponent({
   justify-content: start;
   width: 100%;
   max-width: $max-width-page;
+  @media screen and (max-width: $breakpoint-mobile-big) {
+    justify-content: space-between;
+  }
 }
 .nav {
   @include flex-row;
   gap: 24px;
-  justify-self: center;
+
+  @media screen and (max-width: $breakpoint-mobile-big) {
+    justify-content: flex-end;
+  }
 }
 .link {
   @include text-main(14px, 24px, $primary-darkest);

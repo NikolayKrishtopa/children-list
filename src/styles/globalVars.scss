@@ -24,6 +24,10 @@ $horizontal-gap: 18px;
 
 $transition-duration: 0.5s;
 
+@media screen and (max-width: $breakpoint-mobile-big) {
+  $side-padding: 20px;
+}
+
 @mixin clickable {
   cursor: pointer;
   transition: opacity $transition-duration ease;
