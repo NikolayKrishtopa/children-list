@@ -59,6 +59,7 @@ $transition-duration: 0.5s;
 @mixin button($type) {
   @include text-main(14px, 24px, $accent);
   @include clickable;
+  z-index: 1;
   padding: 10px 20px;
   @if $type == weak {
     color: $accent;
