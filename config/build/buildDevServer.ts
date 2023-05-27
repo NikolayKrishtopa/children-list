@@ -10,5 +10,6 @@ export default function buildDevServer(
     open: true,
     compress: true,
     port: options.port,
+    historyApiFallback: true,
   };
 }
