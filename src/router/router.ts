@@ -7,6 +7,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: FormPage },
     { path: '/preview', component: PreviewPage },
+    { path: '/children-list', redirect: '/' },
   ],
 });
 

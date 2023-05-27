@@ -8,6 +8,7 @@
         class="input"
         v-model="state.name"
         @input="edit"
+        :error="getErrors.name"
       />
     </label>
     <label for="age" class="label">
@@ -18,6 +19,7 @@
         class="input"
         v-model="state.age"
         @input="edit"
+        :error="getErrors.age"
       />
     </label>
     <comp-button :style="'weak'" v-if="type === 'kid'" @click.prevent="remove">
@@ -28,8 +30,19 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { User, Kid } from '../models/models';
+import { useVuelidate } from '@vuelidate/core';
+import {
+  required,
+  minLength,
+  maxLength,
+  minValue,
+  maxValue,
+} from '@vuelidate/validators';
 
 export default defineComponent({
+  setup() {
+    return { v$: useVuelidate() };
+  },
   data() {
     return {
       name: 'comp-form',
@@ -40,12 +53,41 @@ export default defineComponent({
       } as User | Kid,
     };
   },
+  validations() {
+    return {
+      state: {
+        name: { required, minLength: minLength(2), maxLength: maxLength(20) },
+        age: { required, minValue: minValue(0), maxValue: maxValue(17) },
+      },
+    };
+  },
   methods: {
     edit() {
       this.$emit('edit', this.state);
     },
     remove() {
       this.$emit('remove', this.state);
+    },
+  },
+  computed: {
+    getErrors() {
+      const errors: { name: string; age: string } = { name: '', age: '' };
+      if (this.v$.state.name.required.$invalid) {
+        errors.name = 'Обязательное поле';
+      } else if (this.v$.state.name.minLength.$invalid) {
+        errors.name = 'Минимум 2 символа';
+      } else if (this.v$.state.name.maxLength.$invalid) {
+        errors.name = 'Не более 20 символа';
+      }
+      if (this.v$.state.age.required.$invalid) {
+        errors.age = 'Обязательное поле';
+      } else if (
+        this.v$.state.age.minValue.$invalid ||
+        this.v$.state.age.maxValue.$invalid
+      ) {
+        errors.age = 'Возраст ребенка от 0 до 17 лет';
+      }
+      return errors;
     },
   },
   props: {
