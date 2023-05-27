@@ -5,7 +5,7 @@
         :type="'user'"
         :data="state.user"
         @edit="editUserState"
-        @validate="setValid"
+        @validate="setValidUser"
       />
     </comp-section>
     <comp-button
@@ -26,12 +26,14 @@
           :data="kid"
           @edit="editKidState"
           @remove="removeKidFromState"
+          @validate="setValidKids"
         />
       </div>
     </comp-section>
     <comp-button
       :style="'solid'"
       :text="'Сохранить'"
+      :disabled="!state.validity.kids || !state.validity.user"
       @click.prevent="dispatchSave"
     />
   </main>
@@ -50,7 +52,7 @@ export default defineComponent({
       state: {
         user: {} as User,
         kids: [] as Array<Kid>,
-        isValid: false,
+        validity: { user: true, kids: true },
       },
     };
   },
@@ -59,6 +61,7 @@ export default defineComponent({
       this.state.user = data;
     },
     addKidToState() {
+      this.state.validity.kids = false;
       this.state.kids.push({
         id: Date.now(),
         name: '',
@@ -77,8 +80,11 @@ export default defineComponent({
       this.$store.commit('updateUser', this.state.user);
       this.$store.commit('updateKids', this.state.kids);
     },
-    setValid(isValid: typeof this.state.isValid) {
-      this.state.isValid = isValid;
+    setValidUser(isValid: typeof this.state.validity.user) {
+      this.state.validity.user = isValid;
+    },
+    setValidKids(isValid: typeof this.state.validity.kids) {
+      this.state.validity.kids = isValid;
     },
   },
   beforeMount() {

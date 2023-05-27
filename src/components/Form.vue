@@ -56,7 +56,10 @@ export default defineComponent({
   methods: {
     edit() {
       this.$emit('edit', this.state);
-      this.$emit('validate', !!this.getErrors);
+      this.$emit(
+        'validate',
+        !Object.values(this.getErrors).some((v) => v !== '')
+      );
     },
     remove() {
       this.$emit('remove', this.state);
