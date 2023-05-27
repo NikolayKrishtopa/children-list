@@ -7,7 +7,7 @@ import App from '/src/components/App.vue';
 import Form from '/src/components/Form.vue';
 import FormPage from '/src/pages/FormPage.vue';
 import router from './router/router';
-import Section from '/src/components/UI/Section.vue';
+import SectionWrapper from '/src/components/UI/SectionWrapper.vue';
 import TagItem from '/src/components/UI/TagItem.vue';
 import Button from '/src/components/UI/Button.vue';
 import Input from '/src/components/UI/Input.vue';
@@ -18,7 +18,7 @@ const components = [
   Footer,
   Form,
   FormPage,
-  Section,
+  SectionWrapper,
   TagItem,
   Button,
   Input,

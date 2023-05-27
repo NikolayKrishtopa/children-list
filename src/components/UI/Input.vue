@@ -1,5 +1,6 @@
 <template>
   <label for="name" class="label" :class="{ error: !!error }">
+    <p class="error-text">{{ error }}</p>
     <span>{{ title }}</span>
     <input
       type="text"
@@ -40,6 +41,7 @@ export default defineComponent({
 .label {
   @include inputWrapper;
   @include text-main(13px, 16px, $primary-darkest);
+  position: relative;
   span {
     opacity: 48%;
   }
@@ -50,5 +52,12 @@ export default defineComponent({
 }
 .error {
   border-color: $error;
+}
+.error-text {
+  @include text-main(12px, 1, $error);
+  position: absolute;
+  max-width: 60%;
+  top: 5px;
+  right: 5px;
 }
 </style>

@@ -1,27 +1,5 @@
 <template>
   <form :class="{ userForm: type === 'user', kidForm: type === 'kid' }">
-    <!-- <label for="name" class="label">
-      <span>Имя</span>
-      <input
-        type="text"
-        name="name"
-        class="input"
-        v-model="state.name"
-        @input="edit"
-        :error="getErrors.name"
-      />
-    </label> -->
-    <!-- <label for="age" class="label">
-      <span>Возраст</span>
-      <input
-        type="text"
-        name="age"
-        class="input"
-        v-model="state.age"
-        @input="edit"
-        :error="getErrors.age"
-      />
-    </label> -->
     <comp-input
       :attributName="'name'"
       :title="'Имя'"
@@ -78,6 +56,7 @@ export default defineComponent({
   methods: {
     edit() {
       this.$emit('edit', this.state);
+      this.$emit('validate', !!this.getErrors);
     },
     remove() {
       this.$emit('remove', this.state);

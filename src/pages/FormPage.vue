@@ -1,7 +1,12 @@
 <template>
   <main class="content">
     <comp-section :title="'Персональные данные'">
-      <comp-form :type="'user'" :data="state.user" @edit="editUserState" />
+      <comp-form
+        :type="'user'"
+        :data="state.user"
+        @edit="editUserState"
+        @validate="setValid"
+      />
     </comp-section>
     <comp-button
       type="button"
@@ -45,6 +50,7 @@ export default defineComponent({
       state: {
         user: {} as User,
         kids: [] as Array<Kid>,
+        isValid: false,
       },
     };
   },
@@ -53,7 +59,11 @@ export default defineComponent({
       this.state.user = data;
     },
     addKidToState() {
-      this.state.kids.push({ id: Date.now(), name: '', age: 0 });
+      this.state.kids.push({
+        id: Date.now(),
+        name: '',
+        age: null as unknown as number,
+      });
     },
     removeKidFromState(data: Kid) {
       this.state.kids = this.state.kids.filter((kid) => kid.id !== data?.id);
@@ -66,6 +76,9 @@ export default defineComponent({
     dispatchSave() {
       this.$store.commit('updateUser', this.state.user);
       this.$store.commit('updateKids', this.state.kids);
+    },
+    setValid(isValid: typeof this.state.isValid) {
+      this.state.isValid = isValid;
     },
   },
   beforeMount() {
