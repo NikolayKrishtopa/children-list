@@ -10,9 +10,19 @@ import router from './router/router';
 import Section from '/src/components/UI/Section.vue';
 import TagItem from '/src/components/UI/TagItem.vue';
 import Button from '/src/components/UI/Button.vue';
+import Input from '/src/components/UI/Input.vue';
 import store from './store';
 
-const components = [Header, Footer, Form, FormPage, Section, TagItem, Button];
+const components = [
+  Header,
+  Footer,
+  Form,
+  FormPage,
+  Section,
+  TagItem,
+  Button,
+  Input,
+];
 
 const app = createApp(App);
 

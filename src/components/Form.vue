@@ -1,6 +1,6 @@
 <template>
   <form :class="{ userForm: type === 'user', kidForm: type === 'kid' }">
-    <label for="name" class="label">
+    <!-- <label for="name" class="label">
       <span>Имя</span>
       <input
         type="text"
@@ -10,8 +10,8 @@
         @input="edit"
         :error="getErrors.name"
       />
-    </label>
-    <label for="age" class="label">
+    </label> -->
+    <!-- <label for="age" class="label">
       <span>Возраст</span>
       <input
         type="text"
@@ -21,7 +21,21 @@
         @input="edit"
         :error="getErrors.age"
       />
-    </label>
+    </label> -->
+    <comp-input
+      :attributName="'name'"
+      :title="'Имя'"
+      :error="getErrors.name"
+      v-model="state.name"
+      @update:modelValue="edit"
+    />
+    <comp-input
+      :attributName="'age'"
+      :title="'Возраст'"
+      :error="getErrors.age"
+      v-model="state.age"
+      @update:modelValue="edit"
+    />
     <comp-button :style="'weak'" v-if="type === 'kid'" @click.prevent="remove">
       Удалить
     </comp-button>
@@ -57,7 +71,7 @@ export default defineComponent({
     return {
       state: {
         name: { required, minLength: minLength(2), maxLength: maxLength(20) },
-        age: { required, minValue: minValue(0), maxValue: maxValue(17) },
+        age: { required, minValue: minValue(0), maxValue: maxValue(110) },
       },
     };
   },
@@ -68,6 +82,10 @@ export default defineComponent({
     remove() {
       this.$emit('remove', this.state);
     },
+  },
+  props: {
+    type: { type: String, required: true },
+    data: { type: Object },
   },
   computed: {
     getErrors() {
@@ -82,17 +100,18 @@ export default defineComponent({
       if (this.v$.state.age.required.$invalid) {
         errors.age = 'Обязательное поле';
       } else if (
+        this.type === 'kid' &&
+        (this.state.age < 0 || this.state.age > 17)
+      ) {
+        errors.age = 'Возраст ребенка от 0 до 17 лет';
+      } else if (
         this.v$.state.age.minValue.$invalid ||
         this.v$.state.age.maxValue.$invalid
       ) {
-        errors.age = 'Возраст ребенка от 0 до 17 лет';
+        errors.age = 'Некорректное значение';
       }
       return errors;
     },
-  },
-  props: {
-    type: { type: String, required: true },
-    data: { type: Object },
   },
 });
 </script>
