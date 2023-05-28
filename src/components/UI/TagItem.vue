@@ -26,10 +26,11 @@ export default defineComponent({
 .text {
   @include section-title;
   font-weight: 700;
-  padding: 10px 20px;
   border-radius: 5px;
+  padding: 0;
 }
 .filled {
   background-color: $items-dark;
+  padding: 10px 20px;
 }
 </style>

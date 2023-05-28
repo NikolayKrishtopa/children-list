@@ -8,17 +8,12 @@
       disabled: disabled,
     }"
   >
-    <slot></slot>{{ text }}
+    <slot />{{ text }}
   </button>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
 export default defineComponent({
-  data() {
-    return {
-      name: 'comp-button',
-    };
-  },
   props: {
     style: {
       type: String,
@@ -31,6 +26,11 @@ export default defineComponent({
     disabled: {
       type: Boolean,
     },
+  },
+  data() {
+    return {
+      name: 'comp-button',
+    };
   },
 });
 </script>
@@ -48,6 +48,7 @@ export default defineComponent({
 }
 .weak {
   @include button(weak);
+  padding: 0;
 }
 .solid.disabled {
   background-color: $inactive-bkgnd;

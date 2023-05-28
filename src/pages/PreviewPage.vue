@@ -1,13 +1,16 @@
 <template>
   <main class="content">
     <comp-section :title="'Персональные данные'">
-      <tag-item :filled="false" :text="`${userData.name}, ${userData.age} лет`" />
+      <tag-item
+        :filled="false"
+        :text="`${userData.name}, ${userData.age} ${correctForm(userData.age)}`"
+      />
     </comp-section>
     <comp-section :title="'Дети (макс. 5)'">
       <tag-item
         v-for="kid in kidsList"
         :key="kid.id"
-        :text="`${kid.name}, ${kid.age} лет`"
+        :text="`${kid.name}, ${kid.age} ${correctForm(kid.age)}`"
       />
     </comp-section>
   </main>
@@ -15,13 +18,21 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
+import correctEnd from '../utils/helpers';
 export default defineComponent({
   data() {
     return {
       name: 'preview-page',
     };
   },
-  computed: mapGetters(['userData', 'kidsList']),
+  methods: {
+    correctForm(num: number) {
+      return correctEnd(num);
+    },
+  },
+  computed: {
+    ...mapGetters(['userData', 'kidsList']),
+  },
 });
 </script>
 <style lang="scss" scoped>
